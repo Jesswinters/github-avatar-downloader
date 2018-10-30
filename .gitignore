@@ -1,6 +1,6 @@
-# Secret token and avatars folder
+# Secret token and contents of avatars folder
 secrets.js
-avatars/
+avatars/*.jpg
 
 # Logs
 logs
