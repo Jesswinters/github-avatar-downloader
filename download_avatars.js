@@ -1,7 +1,5 @@
-
 const secrets = require('./secrets');
 const request = require('request');
-const https = require('https');
 const fs = require('fs');
 const args = process.argv.slice(2);
 
@@ -25,7 +23,7 @@ getRepoContributors('jquery', 'jquery', function(err, result) {
   const contributors = JSON.parse(result);
 
   contributors.forEach((contributor) => {
-    console.log(contributor.avatar_url);
+    downloadImageByURL(contributor.avatar_url, 'avatars/' + contributor.login + '.jpg');
   });
 });
 
@@ -34,11 +32,5 @@ function downloadImageByURL(url, filePath) {
     .on('error', function (err) {
       console.log('Errors:', err); 
     })
-    .on('response', function (response) {
-      // console.log('Result:', response);
-      console.log(url, filePath);
-    });
-    // .pipe(fs.createWriteStream('./downloaded.html'));
+    .pipe(fs.createWriteStream(filePath));
 }
-
-downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg");
