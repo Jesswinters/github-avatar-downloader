@@ -19,7 +19,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
-getRepoContributors('jquery', 'jquery', function(err, result) {
+getRepoContributors(args[0], args[1], function(err, result) {
   const contributors = JSON.parse(result);
 
   contributors.forEach((contributor) => {
