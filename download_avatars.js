@@ -1,5 +1,5 @@
 
-const token = require('./secrets');
+const secrets = require('./secrets');
 const request = require('request');
 const https = require('https');
 const fs = require('fs');
@@ -11,7 +11,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
     url: 'https://api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors',
     headers: {
       'User-Agent': 'request',
-      'Authorization': token.GITHUB_TOKEN
+      'Authorization': `token ${secrets.GITHUB_TOKEN}`
     }
   };
 
