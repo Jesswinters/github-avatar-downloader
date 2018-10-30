@@ -5,6 +5,7 @@ const args = process.argv.slice(2);
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
+// Function that gets the repo owner and name, and submits the request
 function getRepoContributors(repoOwner, repoName, cb) {
   const options = {
     url: `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`,
@@ -19,6 +20,8 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
+// Run function to get repo owner and name, if 2 args aren't used then don't attemp request
+// If 2 args are submitted, run request to fetch the avatar URLs
 getRepoContributors(args[0], args[1], function(err, result) {
   if (args.length !== 2) {
     console.log('Please specify <repoOwner> and <repoName> to download GitHub avatars. e.g. jquery jquery');
@@ -33,6 +36,7 @@ getRepoContributors(args[0], args[1], function(err, result) {
   }
 });
 
+// Create avatar images in supplied filePath in the getRepoContributors callback above
 function downloadImageByURL(url, filePath) {
   request.get(url)
   .on('error', function (err) {
